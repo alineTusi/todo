@@ -1,0 +1,16 @@
+input {
+  width: 500px;
+  height: 30px;
+  margin-bottom: 1em;
+}
+
+.btn-add {
+  width: 100px;
+  height: 38px;
+  border: 0;
+  background-color: skyblue;
+}
+
+input:focus {
+  outline: none;
+}

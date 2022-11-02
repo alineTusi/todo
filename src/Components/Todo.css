@@ -1,0 +1,29 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1.5em;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+}
+
+.btn {
+  border: 0;
+  margin-left: 0.5em;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: skyblue;
+}
+
+.done-btn {
+  background-color: seashell;
+}
+
+.delete-btn {
+  background-color: red;
+  color: #fff;
+}
