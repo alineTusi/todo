@@ -2,75 +2,65 @@ import React, { useState } from "react";
 import "./NewTodo.css";
 
 const NewTodo = ({ addTodo }) => {
-  // const [inputValue, setInputValue] = useState("");
+  const [number, setNumber] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
 
-  const [number, setNumber] = useState ("");
-  const [day, setDay] = useState ("");
-  const [month, setMonth] = useState ("");
+  const handleNumberChange = ({ target }) => {
+    setNumber(target.value);
+  };
 
-  // const {number, day, month} = inputValue;
+  const handleDayChange = ({ target }) => {
+    setDay(target.value);
+  };
 
-  // e.target.value
-  // const handleChange = ({ target }) => {
-  //   setInputValue(target.value)
-  // };
+  const handleMonthChange = ({ target }) => {
+    setMonth(target.value);
+  };
 
-  const handleNumberChange = ({target}) =>{
-    setNumber(target.value)
-  }
-
-  const handleDayChange = ({target}) =>{
-    setDay(target.value)
-  }
-
-  const handleMonthChange = ({target}) =>{
-    setMonth(target.value)
-  }
-  // add new todo item
+  // Add new todo item
   const saveNewTodo = (e) => {
     e.preventDefault();
-    // console.log(inputValue);
 
-    // object/structure for new todo item
+    // Object/structure for new todo item
     const newItem = {
       id: (Date.now() + Math.random()).toString(),
-      // title: inputValue,
-      number: number, 
+      number: number,
       day: day,
       month: month,
-      isDone: false
+      isDone: false,
     };
 
     addTodo(newItem);
 
+    // Clear input fields after adding new item
     setNumber("");
     setDay("");
     setMonth("");
-    
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={saveNewTodo}>
         <input
           type="text"
-          value={number.number}
-          placeholder="Enter number"
+          value={number}
+          placeholder="Add a new task"
           onChange={handleNumberChange}
         />
-         <input
+        <input
           type="text"
-          value={day.day}
+          value={day}
           placeholder="Enter day of week"
           onChange={handleDayChange}
         />
-         <input
+        <input
           type="text"
-          value={month.month}
+          value={month}
           placeholder="Enter month"
           onChange={handleMonthChange}
         />
-        <button className="btn-add" onClick={saveNewTodo}>
+        <button className="btn-add" type="submit">
           Add
         </button>
       </form>

@@ -1,50 +1,42 @@
-import { useState } from "react";
-import NewTodo from "./Components/NewTodo";
-import TodoList from "./Components/TodoList";
+import React, { useState } from "react";
+import ListGroup from "react-bootstrap/ListGroup";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import TodoList from "./Components/TodoList"; // Ensure these paths are correct
+import NewTodo from "./Components/NewTodo"; // Ensure these paths are correct
 
 export default function App() {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState([]); // State for the list of todos
 
+  // Handler to add a new todo item to the list
   const handleAddTodo = (newTodo) => {
-    const newTodos = [...todoList, newTodo];
-    // array.push()
-    setTodoList(newTodos);
-    console.log(newTodos);
+    setTodoList([...todoList, newTodo]); // Add the new todo to the list
   };
 
-  const handleEditTodo = (todoId) =>{
-
-  }
-
+  // Handler to toggle the completion status of a todo item
   const handleCompletedTodo = (todoId) => {
     const newTodos = todoList.map((todo) => {
       if (todo.id === todoId) {
-        todo.isDone = !todo.isDone;
-        // todo.isDone = true;
+        return { ...todo, isDone: !todo.isDone }; // Toggle isDone property
       }
       return todo;
     });
-    // console.log("ok");
-    // console.log(newTodos);
-
-    // todo.isDone = !todo.isDone;
     setTodoList(newTodos);
   };
 
+  // Handler to delete a todo item
   const deleteTodo = (todoId) => {
-    // newTodos === []
     const newTodos = todoList.filter(({ id }) => id !== todoId);
-
     setTodoList(newTodos);
-    console.log(todoId);
-    console.log(todoList);
   };
 
   return (
     <div className="App">
       <h1>To Do Application</h1>
+      {/* Use NewTodo component to add new todos */}
       <NewTodo addTodo={handleAddTodo} />
+
+      {/* Render TodoList with updated props */}
       <TodoList
         todos={todoList}
         completedTodo={handleCompletedTodo}

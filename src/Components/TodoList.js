@@ -4,12 +4,11 @@ import Todo from "./Todo";
 const TodoList = ({ todos, completedTodo, deleteTodo }) => {
   return (
     <div>
-      {todos.map((todo, index) => (
+      {todos.map((todo) => (
         <Todo
           id={todo.id}
-          key={index}
-          // title={todo.title}
-          number={todo.number}
+          key={todo.id}
+          taskTitle={todo.number} // Changed from `number` to `taskTitle`
           day={todo.day}
           month={todo.month}
           isDone={todo.isDone}
@@ -17,7 +16,6 @@ const TodoList = ({ todos, completedTodo, deleteTodo }) => {
           deleteTodo={deleteTodo}
         />
       ))}
-      <Todo />
     </div>
   );
 };
